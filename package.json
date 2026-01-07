@@ -4,7 +4,9 @@
   "description": "Brainly is a second brain app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "dev": "npm run build && npm run start"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,8 @@
   "dependencies": {
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.1.2",
     "typescript": "^5.9.3"
   }
