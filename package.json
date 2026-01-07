@@ -1,0 +1,27 @@
+{
+  "name": "brainly",
+  "version": "1.0.0",
+  "description": "Brainly is a second brain app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buildwithaayush/Brainly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/buildwithaayush/Brainly/issues"
+  },
+  "homepage": "https://github.com/buildwithaayush/Brainly#readme",
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "mongoose": "^9.1.2",
+    "typescript": "^5.9.3"
+  }
+}
