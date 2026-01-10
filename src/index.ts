@@ -1,7 +1,8 @@
 import express from "express";
+import { random } from "./utils.js";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
-import{Usermodel,connectDB,Contentmodel} from "./db.js";
+import{Usermodel,connectDB,Contentmodel,Linkmodel} from "./db.js";
 await connectDB();
 import { jwt_password } from "./config.js";
 import { userMiddleware } from "./middleware.js";
@@ -95,7 +96,31 @@ app.delete("/api/v1/delete",userMiddleware, async (req,res) => {
     res.json({message: "content deleted"})
     
 }) 
-app.post("/api/v1/brain/share",(req,res) => {
+app.post("/api/v1/brain/share",userMiddleware, async (req,res) => {
+const share = req.body.share;
+
+if(share) {
+    await Linkmodel.create({
+        //@ts-ignore
+        userId: req.userId,
+        hash: random(10)
+    })
+}else{
+    await Linkmodel.deleteOne({
+        //@ts-ignore
+        userId: req.userId
+    })
+}
+
+res.json({
+    message: "updated sharable link"
+})
+
+
+})
+
+
+app.get("/api/v1/brain/share",(req,res) => {
 
 })
 
