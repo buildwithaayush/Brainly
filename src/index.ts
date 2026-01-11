@@ -120,8 +120,40 @@ res.json({
 })
 
 
-app.get("/api/v1/brain/share",(req,res) => {
+app.get("/api/v1/brain/sharelink",async (req,res) => {
+    //@ts-ignore
+    const hash = req.params.sharelink;
+  const link =  await Linkmodel.findOne({
+        hash
+    })
 
+    if(!link){
+        res.status(411).json({
+            message: "sorry incorrect input"
+        })
+        return 
+    }
+
+    // userId 
+    const content = await Contentmodel.find({
+    userId: link.userId 
+    })
+
+    const user = await Usermodel.findOne({
+        userId: link.userId
+    })
+
+    if(!user) {
+        res.status(411).json({
+            message: "user not found, error should ideally not happen"
+         })
+        return;
+    }
+
+    res.json({
+        username: user.username,
+        content: content
+    })
 })
 
 app.listen(3000);
